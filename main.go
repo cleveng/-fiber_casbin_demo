@@ -16,7 +16,7 @@ var r *fiber.App
 
 func main() {
 	config.ConnectDB() // 初始化数据库
-	config.InitCasbin()
+	//config.InitCasbin()
 	services.InitTables()
 
 	app := setupHTTP()

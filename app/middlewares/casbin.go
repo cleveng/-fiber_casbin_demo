@@ -27,5 +27,6 @@ func Casbin() *fibercasbin.CasbinMiddleware {
 		},
 	})
 	//adapter.LoadPolicy()
+	authz.Enforcer.LoadPolicy()
 	return authz
 }
