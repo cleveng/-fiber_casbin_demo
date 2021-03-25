@@ -13,20 +13,21 @@ func Casbin() *fibercasbin.CasbinMiddleware {
 	db := config.DB
 	adapter, _ := gormadapter.NewAdapterByDBWithCustomTable(db, &models.CasbinRule{})
 	authz := fibercasbin.New(fibercasbin.Config{
+		Enforcer: config.Enforcer,
+		Mode: fibercasbin.ModeEnforcer,
 		ModelFilePath: "config/rbac_model.conf",
 		PolicyAdapter: adapter,
 		Unauthorized: func(c *fiber.Ctx) error {
-			return c.Status(http.StatusNotFound).JSON(fiber.Map{"message": "用户尚未登录，请求非法...", "status_code": 404})
+			return c.Status(http.StatusUnauthorized).JSON(fiber.Map{"message": "Unauthorized...", "status_code": 401})
 		},
 		Forbidden: func(c *fiber.Ctx) error {
-			return c.Status(http.StatusNotFound).JSON(fiber.Map{"message": "用户权限不足...", "status_code": 404})
+			return c.Status(http.StatusNotFound).JSON(fiber.Map{"message": "Forbidden ...", "status_code": 404})
 		},
 		Lookup: func(c *fiber.Ctx) string {
 			// get subject from BasicAuth, JWT, Cookie etc in real world
 			return "admin"
 		},
 	})
-	//adapter.LoadPolicy()
-	authz.Enforcer.LoadPolicy()
+	//adapter.LoadPolicy() // model Model
 	return authz
 }
