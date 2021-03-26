@@ -3,7 +3,7 @@ module github.com/svcg/-fiber_casbin_demo
 go 1.16
 
 require (
-	github.com/arsmn/fiber-casbin/v2 v2.7.0
+	github.com/arsmn/fiber-casbin/v2 v2.7.1
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/casbin/casbin/v2 v2.25.5
 	github.com/casbin/gorm-adapter/v3 v3.2.3

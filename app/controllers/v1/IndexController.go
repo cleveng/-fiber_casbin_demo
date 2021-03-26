@@ -8,9 +8,7 @@ import (
 
 func Add(ctx *fiber.Ctx) error {
 	enforcer := config.Enforcer
-	//authz := middlewares.Casbin()
-	//authz.Enforcer.LoadPolicy()
-	if ok, _ := 	enforcer.AddPolicy("admin", "/v1/test", "GET"); !ok {
+	if ok, _ := enforcer.AddPolicy("admin", "/v1/test", "GET"); !ok {
 		return ctx.Status(http.StatusOK).JSON("Policy exist")
 	}
 	return ctx.Status(http.StatusOK).JSON("add success")
@@ -18,8 +16,6 @@ func Add(ctx *fiber.Ctx) error {
 
 func Remove(ctx *fiber.Ctx) error {
 	enforcer := config.Enforcer
-	//authz := middlewares.Casbin()
-	//authz.Enforcer.LoadPolicy()
 	if ok, _ := enforcer.RemovePolicy("admin", "/v1/test", "GET"); !ok {
 		return ctx.Status(http.StatusOK).JSON("Policy no exist")
 	}

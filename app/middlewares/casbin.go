@@ -14,7 +14,7 @@ func Casbin() *fibercasbin.CasbinMiddleware {
 	adapter, _ := gormadapter.NewAdapterByDBWithCustomTable(db, &models.CasbinRule{})
 	authz := fibercasbin.New(fibercasbin.Config{
 		Enforcer: config.Enforcer,
-		Mode: fibercasbin.ModeEnforcer,
+		//Mode: fibercasbin.ModeEnforcer, // v2.71 去掉这个参数
 		ModelFilePath: "config/rbac_model.conf",
 		PolicyAdapter: adapter,
 		Unauthorized: func(c *fiber.Ctx) error {
@@ -28,6 +28,5 @@ func Casbin() *fibercasbin.CasbinMiddleware {
 			return "admin"
 		},
 	})
-	//adapter.LoadPolicy() // model Model
 	return authz
 }

@@ -6,6 +6,8 @@ github.com/andybalholm/brotli v1.0.1 h1:KqhlKozYbRtJvsPrrEeXcO+N2l6NYT5A2QAFmSUL
 github.com/andybalholm/brotli v1.0.1/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/arsmn/fiber-casbin/v2 v2.7.0 h1:bUfRq9sGB1j7L1wq+psYvMrVZyGw9KpatBc0JMFxuIg=
 github.com/arsmn/fiber-casbin/v2 v2.7.0/go.mod h1:bb8uDlwSHpfSXi5xudez+SXP9Kxt8SS/f7EQ0A8bB/Q=
+github.com/arsmn/fiber-casbin/v2 v2.7.1 h1:WbCxdekIoS1Klb6PIjOahnuUgfN3QEg1DRKezQuVrxk=
+github.com/arsmn/fiber-casbin/v2 v2.7.1/go.mod h1:bb8uDlwSHpfSXi5xudez+SXP9Kxt8SS/f7EQ0A8bB/Q=
 github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d h1:Byv0BzEl3/e6D5CLfI0j/7hiIEtvGVFPCZ7Ei2oq8iQ=
 github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d/go.mod h1:WaHUgvxTVq04UNunO+XhnAqY/wQc+bxr74GqbsZ/Jqw=
 github.com/casbin/casbin/v2 v2.21.0/go.mod h1:wUgota0cQbTXE6Vd+KWpg41726jFRi7upxio0sR+Xd0=
