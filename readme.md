@@ -5,7 +5,7 @@
 ### vendor list
 > [fiber](https://github.com/gofiber/fiber)
 > [fiber-casbin](https://github.com/arsmn/fiber-casbin)
-> [gorm](gorm.io/gorm)
+> [gorm](https://gorm.io/)
 
 > You can clone this package or download zip code ,  then  you can run `go mod tidy && go mod vendor` to fix code vendor library.
 > dev.env is database config file , you must to modify yours。
@@ -35,6 +35,22 @@ go run main.go	// listen: "localhost:10183"
 ```
 ######  the command will be create the table `casbin_rule`
 
+### Casbin Middleware
+```
+func Casbin() *fibercasbin.CasbinMiddleware {
+	db := config.DB //global db_connection
+	adapter, _ := gormadapter.NewAdapterByDBWithCustomTable(db, &models.CasbinRule{})
+	authz := fibercasbin.New(fibercasbin.Config{
+		Enforcer: config.Enforcer,	// global casbin_enforcer own define
+		//Mode: fibercasbin.ModeEnforcer, // version2.71 already removed
+		ModelFilePath: "config/rbac_model.conf",	// your rbac config filepath
+		PolicyAdapter: adapter,
+	})
+	return authz
+}
+```
+
+
 > The demo code provide three url of the request routers
 + `/v1/add` add a Policy
 + `/v1/remove` remove a Policy
@@ -49,21 +65,6 @@ func Router(Router fiber.Router) {
 		v.Get("/remove", v1.Remove)
 		v.Get("/test", authz.RoutePermission(), v1.Test)
 	}
-}
-```
-
-### Casbin Middleware
-```
-func Casbin() *fibercasbin.CasbinMiddleware {
-	db := config.DB //global db_connection
-	adapter, _ := gormadapter.NewAdapterByDBWithCustomTable(db, &models.CasbinRule{})
-	authz := fibercasbin.New(fibercasbin.Config{
-		Enforcer: config.Enforcer,	// global casbin_enforcer own define
-		//Mode: fibercasbin.ModeEnforcer, // version2.71 already removed
-		ModelFilePath: "config/rbac_model.conf",	// your rbac config filepath
-		PolicyAdapter: adapter,
-	})
-	return authz
 }
 ```
 
